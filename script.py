@@ -27,14 +27,19 @@ class BankAccount:
         self.__kontostand = start_kontostand # Nichtöffentliches Attribut, das den aktuellen Kontostand beinhaltet
     def einzahlen(self, betrag: float) -> None:
         """Erhöht den Kontostand um den eingezahlten Betrag"""
-        self.__kontostand += betrag
+        if betrag > 0:
+            self.__kontostand += betrag
+            print(f"{f'{betrag:_.2f}'.replace('_', ' ')}.- CHF wurden eingezahlt")
+        else:
+            print("Einzahlung fehlgeschlagen: Betrag muss positiv sein")
     def abheben(self, betrag: float) -> None:
         """Verringert den Kontostand, bei ausreichendem Saldo, um den abgehobenen Betrag"""
         if betrag > 0:
-            if betrag < self.__kontostand:
+            if betrag <= self.__kontostand:
                 self.__kontostand -= betrag
+                print(f"{f'{betrag:_.2f}'.replace('_', ' ')}.- CHF wurden abgehoben")
             else:
-                print(f"Kontosaldo nicht ausreichend um {betrag}.- CHF abzuheben")
+                print(f"Kontosaldo nicht ausreichend um {f'{betrag:_.2f}'.replace('_', ' ')}.- CHF abzuheben")
         else:
             print("Abhebung fehlgeschlagen: Betrag muss positiv sein")
     def get_kontostand(self) -> float:
