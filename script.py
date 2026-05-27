@@ -16,3 +16,32 @@ import argparse
 #    - Bei der Division soll eine Fehlerbehandlung implementiert werden, um eine Division durch Null zu vermeiden.
 
 # 4. Geben Sie das Ergebnis der Berechnung aus.
+
+# Argumentparser-Objekt erstellen
+parser = argparse.ArgumentParser(description= "Einfaches Beispiel für die Verwendung von argparse")
+
+# Pflicht-Agumentaufnahme der beiden Zahlen
+parser.add_argument("zahl1", help="Die erste Zahl", type=int)
+parser.add_argument("zahl2", help="Die zweite Zahl", type=int)
+
+# Optionale-Argumentaufnahme der Operation mit Standartwert Addition
+parser.add_argument("--operation", help="Die gewünschte mathematische Operation", choices=["add", "sub", "mul", "div"], default="add")
+
+# Argumente parsen
+args= parser.parse_args()
+
+# Berechnungen basierend auf den Argumenten
+if args.operation == "add":
+    result = args.zahl1 + args.zahl2
+elif args.operation == "sub":
+    result = args.zahl1 - args.zahl2
+elif args.operation == "mul":
+    result = args.zahl1 * args.zahl2
+elif args.operation == "div":
+    if args.zahl2 == 0:
+        print("Eine division durch 0 ist nicht möglich")
+    else:
+        result = args.zahl1 / args.zahl2
+
+print("Das Ergebnis ist:", result)
+
