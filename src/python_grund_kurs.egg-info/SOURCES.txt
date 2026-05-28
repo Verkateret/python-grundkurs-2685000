@@ -1,0 +1,16 @@
+LICENSE
+README.md
+setup.py
+src/python_grund_kurs/__init__.py
+src/python_grund_kurs/aufgaben.py
+src/python_grund_kurs/kategorien.py
+src/python_grund_kurs.egg-info/PKG-INFO
+src/python_grund_kurs.egg-info/SOURCES.txt
+src/python_grund_kurs.egg-info/dependency_links.txt
+src/python_grund_kurs.egg-info/requires.txt
+src/python_grund_kurs.egg-info/top_level.txt
+src/python_grund_kurs/utils/__init__.py
+src/python_grund_kurs/utils/sortieren.py
+tests/test_aufgaben.py
+tests/test_kategorien_manager.py
+tests/test_sortieren.py

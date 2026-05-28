@@ -11,7 +11,6 @@ class Aufgabe:
         - prio (int): Die Priorität der Aufgabe.
         - datum (str): Das Datum der Aufgabe.
         """
-        print("Testausgabe NEU")
     
         self.titel = titel
         self.beschreibung = beschreibung
