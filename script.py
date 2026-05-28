@@ -51,3 +51,27 @@ class BankAccount:
     
 # Aufgabe: Erstellen Sie ein neues Jugendbankkonto, dass von der Klasse 
 # BankAccount erbt und beschränken sie die Abhebungen auf maximal 25€.
+class JugendBankkonto(BankAccount):
+    """Eine spezifische Klasse JugendBankkonto die von der allgemeinen Klasse BankAccount erbt"""
+    def abheben(self, betrag: float) -> None:
+        """Verringert den Kontostand um den Angegebenen Betrag,
+        wenn genügend Guthaben vorhanden ist und der Betrag nicht über 50 Euro liegt."""
+        if betrag <= 25:
+            super().abheben(betrag)
+        else:
+            raise ValueError("Abhebung fehlgeschlagen: Maximalbetrag von 25 EUR überschritten.")
+
+# Testen des JugendBankkontos
+jugend_konto = JugendBankkonto("Max Mustermann", "1234567890", 100.0)
+print(jugend_konto)
+jugend_konto.einzahlen(100)
+
+try:
+    jugend_konto.abheben(30)  # Sollte eine Fehlermeldung ausgeben
+except ValueError as e:
+    print(e)
+
+try:
+    jugend_konto.abheben(20)  # Sollte erfolgreich sein
+except ValueError as e:
+    print(e)
