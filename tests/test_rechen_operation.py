@@ -23,10 +23,6 @@ def test_subtrahiere_zehn_negative():
 def test_teile_durch_vier_positive():
     assert teile_durch_vier(16) == 4
 
-def test_teile_durch_vier_zero_div():
-    with pytest.raises(ZeroDivisionError):
-        teile_durch_vier(0)
-
 def test_teile_durch_vier_not_divisible():
     with pytest.raises(ValueError):
         teile_durch_vier(5)

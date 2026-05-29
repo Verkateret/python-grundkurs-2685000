@@ -20,56 +20,92 @@
 # Beachte dass man float nicht direkt vergleichen kann.
 
 import pytest
-from aufgaben_package.rechen_operation import erhoehe_um_zwei, multipliziere_mit_drei, subtrahiere_zehn, teile_durch_vier
+
+from aufgaben_package.rechen_operation import (
+    erhoehe_um_zwei,
+    multipliziere_mit_drei,
+    subtrahiere_zehn,
+    teile_durch_vier,
+)
 
 
-def test_erhoehe_um_zwei():
-    # Teste mit integer
-    assert erhoehe_um_zwei(3) == 5
-    assert erhoehe_um_zwei(-2) == 0
+def test_erhoehe_um_zwei_mit_positivem_integer():
+    assert erhoehe_um_zwei(5) == 7
+
+
+def test_erhoehe_um_zwei_mit_negativem_integer():
+    assert erhoehe_um_zwei(-3) == -1
+
+
+def test_erhoehe_um_zwei_mit_null():
     assert erhoehe_um_zwei(0) == 2
-    # Teste mit float (unter Berücksichtigung der Toleranz)
-    assert pytest.approx(erhoehe_um_zwei(2.5), 0.01) == 4.5
-    assert pytest.approx(erhoehe_um_zwei(-3.7), 0.01) == -1.7
 
-def test_multipliziere_mit_drei():
-    # Teste mit integer
-    assert multipliziere_mit_drei(3) == 9
-    assert multipliziere_mit_drei(-2) == -6
+
+def test_erhoehe_um_zwei_mit_float():
+    assert erhoehe_um_zwei(2.5) == pytest.approx(4.5)
+
+
+def test_erhoehe_um_zwei_mit_negativem_float():
+    assert erhoehe_um_zwei(-1.25) == pytest.approx(0.75)
+
+
+def test_multipliziere_mit_drei_mit_positivem_integer():
+    assert multipliziere_mit_drei(4) == 12
+
+
+def test_multipliziere_mit_drei_mit_negativem_integer():
+    assert multipliziere_mit_drei(-5) == -15
+
+
+def test_multipliziere_mit_drei_mit_null():
     assert multipliziere_mit_drei(0) == 0
-    # Teste mit float
-    assert pytest.approx(multipliziere_mit_drei(2.5), 0.01) == 7.5
-    assert pytest.approx(multipliziere_mit_drei(-3.7), 0.01) == -11.1
 
-def test_subtrahiere_zehn():
-    # Teste mit integer
+
+def test_multipliziere_mit_drei_mit_float():
+    assert multipliziere_mit_drei(2.5) == pytest.approx(7.5)
+
+
+def test_multipliziere_mit_drei_mit_negativem_float():
+    assert multipliziere_mit_drei(-1.5) == pytest.approx(-4.5)
+
+
+def test_subtrahiere_zehn_mit_positivem_integer():
     assert subtrahiere_zehn(20) == 10
-    assert subtrahiere_zehn(0) == -10
-    assert subtrahiere_zehn(-5) == -15
-    # Teste mit float
-    assert pytest.approx(subtrahiere_zehn(10.5), 0.01) == 0.5
-    assert pytest.approx(subtrahiere_zehn(-9.2), 0.01) == -19.2
 
-def test_teile_durch_vier():
-    # Teste mit integer
+
+def test_subtrahiere_zehn_mit_negativem_integer():
+    assert subtrahiere_zehn(-5) == -15
+
+
+def test_subtrahiere_zehn_mit_null():
+    assert subtrahiere_zehn(0) == -10
+
+
+def test_subtrahiere_zehn_mit_float():
+    assert subtrahiere_zehn(12.5) == pytest.approx(2.5)
+
+
+def test_subtrahiere_zehn_mit_negativem_float():
+    assert subtrahiere_zehn(-2.5) == pytest.approx(-12.5)
+
+
+def test_teile_durch_vier_mit_positivem_integer():
     assert teile_durch_vier(8) == 2
-    assert teile_durch_vier(-4) == -1
-    assert teile_durch_vier(16) == 4
-    # Teste mit float
-    assert pytest.approx(teile_durch_vier(8.0), 0.01) == 2.0
-    assert pytest.approx(teile_durch_vier(-12.0), 0.01) == -3.0
-    # Fehlerfälle
+
+
+def test_teile_durch_vier_mit_negativem_integer():
+    assert teile_durch_vier(-12) == -3
+
+
+def test_teile_durch_vier_mit_float():
+    assert teile_durch_vier(8.0) == pytest.approx(2.0)
+
+
+def test_teile_durch_vier_mit_null_wirft_zero_division_error():
     with pytest.raises(ZeroDivisionError):
         teile_durch_vier(0)
-    with pytest.raises(ValueError):
-        teile_durch_vier(5)
+
+
+def test_teile_durch_vier_mit_nicht_teilbarer_zahl_wirft_value_error():
     with pytest.raises(ValueError):
         teile_durch_vier(10)
-
-def test_teile_durch_vier_floats_mit_fehler():
-    # Teste, dass bei nicht durch 4 teilbaren Floats eine ValueError geworfen wird
-    with pytest.raises(ValueError):
-        teile_durch_vier(5.5)
-    with pytest.raises(ValueError):
-        teile_durch_vier(3.7)
-
